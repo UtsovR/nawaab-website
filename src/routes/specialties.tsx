@@ -1,0 +1,107 @@
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { ImagePanel, PageHero } from "../components/site";
+import { Button } from "../components/ui/button";
+import biriSpe from "../../image_asstes/biri_spe.png";
+import biryaniBackground from "../../image_asstes/biriyani_bg.png";
+import indianPlatter from "../../image_asstes/indian_platter.png";
+import indoChinese from "../../image_asstes/indo_chinese.png";
+import tandoorPlatter from "../../image_asstes/tandoor_platter.png";
+export const Route = createFileRoute("/specialties")({
+  head: () => ({
+    meta: [
+      { title: "Our Specialities | NAWAAB" },
+      {
+        name: "description",
+        content:
+          "Discover NAWAAB's signature Biryani, Tandoor, Indian and Indo-Chinese specialties.",
+      },
+      { property: "og:title", content: "Our Specialities — NAWAAB" },
+      { property: "og:description", content: "Biryani is the heart of NAWAAB." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
+  component: Page,
+});
+const blocks = [
+  [
+    "Biryani – The Heart of NAWAAB",
+    "Fragrant basmati rice, carefully balanced spices and beautifully cooked meat, layered and slow-cooked for a finish worth remembering.",
+    "specialty-biryani",
+    "NAWAAB Special Biryani • Mutton Biryani • Chicken Biryani",
+    "biryani",
+  ],
+  [
+    "Tandoor",
+    "Smoky, succulent favourites taken straight from the fire.",
+    "specialty-tandoor",
+    "Stuffed Afgani Chicken • Chicken Tikka • Paneer Tikka",
+    "tandoor",
+  ],
+  [
+    "Indian",
+    "Rich, comforting classics prepared for sharing.",
+    "specialty-indian",
+    "Butter Chicken • Rogan Josh • Dal Makhani",
+    "indian",
+  ],
+  [
+    "Indo-Chinese",
+    "Vibrant wok-fired flavours with familiar Kolkata spirit.",
+    "specialty-chinese",
+    "Chilli Chicken • Hakka Noodles • Mixed Fried Rice",
+    "chinese",
+  ],
+] as const;
+function Page() {
+  return (
+    <main>
+      <PageHero
+        eyebrow="Crafted with purpose"
+        title="Our Specialities"
+        copy="One kitchen, four culinary stories — always beginning with Biryani."
+        imageId="specialties-hero"
+        imageSrc={biryaniBackground}
+      />
+      <div className="bg-cream text-espresso">
+        {blocks.map(([title, copy, img, dishes, hash], i) => (
+          <section key={title} className="section-pad border-b border-espresso/10">
+            <div
+              className={`mx-auto grid max-w-7xl items-center gap-10 px-5 md:grid-cols-2 md:px-8 ${i % 2 ? "" : ""}`}
+            >
+              <ImagePanel
+                id={img}
+                label={`${title} Image`}
+                imageSrc={
+                  i === 0
+                    ? biriSpe
+                    : i === 1
+                      ? tandoorPlatter
+                      : i === 2
+                        ? indianPlatter
+                        : i === 3
+                          ? indoChinese
+                          : undefined
+                }
+                className={i === 0 ? "min-h-[650px]" : "min-h-[430px]"}
+              />
+              <div className={i % 2 ? "md:-order-1" : ""}>
+                <p className="text-[10px] uppercase tracking-[.25em] text-maroon">
+                  {i === 0 ? "The heart of our kitchen" : `Speciality ${i + 1}`}
+                </p>
+                <h2 className={`mt-3 ${i === 0 ? "text-6xl md:text-7xl" : "text-5xl"}`}>{title}</h2>
+                <p className="mt-6 max-w-md text-sm leading-7 text-espresso/65">{copy}</p>
+                <p className="mt-6 text-xs uppercase tracking-[.12em]">{dishes}</p>
+                <Button asChild variant="royal" size="lg" className="mt-8">
+                  <Link to="/menu" hash={hash}>
+                    Explore the Menu
+                  </Link>
+                </Button>
+              </div>
+            </div>
+          </section>
+        ))}
+      </div>
+    </main>
+  );
+}
