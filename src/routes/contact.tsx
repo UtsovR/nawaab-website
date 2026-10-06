@@ -49,7 +49,7 @@ function Contact() {
             <div className="mt-7">
               <ContactActions />
             </div>
-            <Button asChild variant="royal" size="lg" className="mt-5">
+            <Button asChild variant="royal" size="lg" className="mt-5 w-full sm:w-auto">
               <Link to="/reservation">Reserve a Table</Link>
             </Button>
           </div>

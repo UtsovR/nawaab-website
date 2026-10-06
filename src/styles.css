@@ -155,7 +155,9 @@
     color: var(--color-foreground);
     font-family: var(--font-sans);
     min-width: 320px;
+    overflow-x: hidden;
   }
+  img, iframe { max-width: 100%; }
   h1, h2, h3, .font-display { font-family: var(--font-display); }
   html { scroll-behavior: smooth; }
   ::selection { background: var(--primary); color: var(--primary-foreground); }
@@ -167,7 +169,7 @@
     radial-gradient(circle at 72% 24%, color-mix(in oklab, var(--gold-soft) 30%, transparent), transparent 32%),
     linear-gradient(25deg, var(--espresso), color-mix(in oklab, var(--secondary) 80%, var(--espresso)));
 }
-@utility section-pad { padding-block: clamp(4.5rem, 9vw, 8rem); }
+@utility section-pad { padding-block: clamp(2.75rem, 7vw, 8rem); }
 
 @media (prefers-reduced-motion: no-preference) {
   .slow-zoom { animation: slowZoom 18s ease-in-out infinite alternate; }

@@ -98,7 +98,7 @@ Thank you.`;
   const errorId = (field: ReservationField) => `reservation-${field}-error`;
 
   return (
-    <form onSubmit={submit} noValidate className="grid gap-4 md:grid-cols-2">
+    <form onSubmit={submit} noValidate className="grid gap-4 sm:grid-cols-2">
       <div>
         <Input
           name="name"
@@ -190,14 +190,14 @@ Thank you.`;
         name="request"
         aria-label="Special Request"
         placeholder="Special Request"
-        className="min-h-28 border-primary/30 bg-espresso/40 text-cream md:col-span-2"
+        className="min-h-30 border-primary/30 bg-espresso/40 text-cream sm:col-span-2"
       />
       {openingWhatsApp && (
-        <p role="status" className="text-sm text-cream/75 md:col-span-2">
+        <p role="status" className="text-sm text-cream/75 sm:col-span-2">
           Opening WhatsApp with your reservation details…
         </p>
       )}
-      <Button type="submit" variant="royal" size="lg" className="md:col-span-2">
+      <Button type="submit" variant="royal" size="lg" className="w-full sm:col-span-2">
         Reserve Table
       </Button>
     </form>

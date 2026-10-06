@@ -61,7 +61,7 @@ const dishes = [
 function Home() {
   return (
     <main>
-      <section className="relative min-h-[94vh] overflow-hidden pt-28">
+      <section className="relative min-h-[560px] overflow-hidden pt-20 md:min-h-[94vh] md:pt-28">
         <ImagePanel
           id="hero-biryani"
           label="Hero Biryani Image"
@@ -69,25 +69,25 @@ function Home() {
           className="absolute inset-0 min-h-full slow-zoom"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-espresso via-espresso/75 to-transparent" />
-        <div className="relative mx-auto flex min-h-[82vh] max-w-7xl items-center px-5 md:px-8">
+        <div className="relative mx-auto flex min-h-[480px] max-w-7xl items-center px-5 md:min-h-[82vh] md:px-8">
           <div className="reveal max-w-4xl">
             <p className="mb-6 text-xs uppercase tracking-[0.3em] text-primary">
               NAWAAB — The Taste of Royals
             </p>
-            <h1 className="max-w-4xl text-6xl font-semibold leading-[.88] text-cream md:text-8xl lg:text-9xl">
+            <h1 className="max-w-4xl text-[clamp(3rem,14vw,5rem)] font-semibold leading-[.88] text-cream md:text-8xl lg:text-9xl">
               <span className="text-primary">Biryani</span> is the Heart of NAWAAB
             </h1>
             <p className="mt-7 max-w-2xl text-sm leading-7 text-cream/75 md:text-base">
               Experience aromatic Biryani, smoky Tandoor favourites, rich Indian classics and bold
               Indo-Chinese flavours, prepared with care and served with a royal touch.
             </p>
-            <div className="mt-9 flex flex-wrap gap-3">
-              <Button asChild variant="royal" size="lg">
+            <div className="mt-8 grid w-full gap-3 sm:flex sm:w-auto sm:flex-wrap">
+              <Button asChild variant="royal" size="lg" className="w-full sm:w-auto">
                 <Link to="/menu">
                   View Menu <ArrowRight />
                 </Link>
               </Button>
-              <Button asChild variant="royalOutline" size="lg">
+              <Button asChild variant="royalOutline" size="lg" className="w-full sm:w-auto">
                 <Link to="/reservation">Reserve a Table</Link>
               </Button>
             </div>
@@ -102,7 +102,7 @@ function Home() {
               label="Signature Biryani Image"
               imageSrc={signatureBiryani}
               imageClassName="object-top"
-              className="min-h-[520px]"
+              className="min-h-80 md:min-h-[520px]"
             />
           </div>
           <div className="flex flex-col justify-center md:col-span-5">
@@ -112,13 +112,13 @@ function Home() {
               title="Biryani – The Heart of NAWAAB"
               copy="At NAWAAB, Biryani is not just another dish on the menu. Fragrant basmati rice, carefully balanced spices and beautifully cooked meat come together to create a Biryani made to be remembered."
             />
-            <div className="grid grid-cols-2 gap-3 border-y border-espresso/15 py-5 text-[10px] uppercase tracking-[.2em] sm:grid-cols-4">
+            <div className="grid grid-cols-2 gap-3 border-y border-espresso/15 py-5 text-[10px] uppercase tracking-[.16em] sm:grid-cols-4 sm:tracking-[.2em]">
               <span>Slow Cooked</span>
               <span>Aromatic</span>
               <span>Richly Spiced</span>
               <span>Royally Served</span>
             </div>
-            <Button asChild variant="royal" size="lg" className="mt-7 self-start">
+            <Button asChild variant="royal" size="lg" className="mt-7 w-full self-start sm:w-auto">
               <a href="/menu#biryani">Explore Our Biryani</a>
             </Button>
           </div>
@@ -147,7 +147,7 @@ function Home() {
                           ? pulaoMangsho
                           : undefined
                   }
-                  className={i === 0 ? "min-h-[480px]" : "min-h-[280px]"}
+                  className={i === 0 ? "min-h-80 md:min-h-[480px]" : "min-h-60 md:min-h-[280px]"}
                 >
                   <div className="absolute inset-x-6 top-6">
                     <p className="text-[10px] uppercase tracking-[.2em] text-primary">{tag}</p>
@@ -206,7 +206,7 @@ function Home() {
           </Button>
         </div>
       </section>
-      <section className="relative min-h-[560px] overflow-hidden">
+      <section className="relative min-h-[440px] overflow-hidden md:min-h-[560px]">
         <ImagePanel
           id="royal-banner"
           label="Biryani Close-up"
@@ -215,18 +215,20 @@ function Home() {
         />
         <div className="absolute inset-0 bg-espresso/65" />
         <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-b from-transparent to-espresso/90" />
-        <div className="relative mx-auto flex min-h-[560px] max-w-7xl items-center justify-center px-5 text-center">
+        <div className="relative mx-auto flex min-h-[440px] max-w-7xl items-center justify-center px-5 text-center md:min-h-[560px]">
           <div>
             <p className="text-xs uppercase tracking-[.28em] text-primary">Your table awaits</p>
-            <h2 className="mt-4 text-5xl text-cream md:text-7xl">Hungry for Something Royal?</h2>
+            <h2 className="mt-4 text-[clamp(2.5rem,12vw,3.5rem)] text-cream md:text-7xl">
+              Hungry for Something Royal?
+            </h2>
             <p className="mx-auto mt-5 max-w-xl text-sm text-cream/75">
               Your favourite Biryani, kebabs, Indian curries and Indo-Chinese classics are waiting.
             </p>
-            <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <Button asChild variant="ivory" size="lg">
+            <div className="mt-8 grid w-full gap-3 sm:flex sm:w-auto sm:flex-wrap sm:justify-center">
+              <Button asChild variant="ivory" size="lg" className="w-full sm:w-auto">
                 <Link to="/menu">View Menu</Link>
               </Button>
-              <Button asChild variant="royalOutline" size="lg">
+              <Button asChild variant="royalOutline" size="lg" className="w-full sm:w-auto">
                 <Link to="/reservation">Reserve a Table</Link>
               </Button>
             </div>
@@ -236,13 +238,13 @@ function Home() {
       <section className="section-pad bg-cream text-espresso">
         <div className="mx-auto max-w-7xl px-5 md:px-8">
           <SectionTitle light eyebrow="Food, fire & hospitality" title="Inside NAWAAB" />
-          <div className="columns-2 gap-3 md:columns-4">
+          <div className="columns-1 gap-3 sm:columns-2 md:columns-4">
             {Array.from({ length: 8 }, (_, i) => (
               <ImagePanel
                 key={i}
                 id={`gallery-0${i + 1}`}
                 label={`Food Gallery Image ${i + 1}`}
-                className={`mb-3 break-inside-avoid ${i % 3 === 0 ? "min-h-96" : "min-h-64"}`}
+                className={`mb-3 break-inside-avoid ${i % 3 === 0 ? "min-h-72 md:min-h-96" : "min-h-56 md:min-h-64"}`}
               />
             ))}
           </div>

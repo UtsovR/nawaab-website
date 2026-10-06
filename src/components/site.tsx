@@ -21,7 +21,7 @@ export function Brand({ compact = false }: { compact?: boolean }) {
       <Link
         to="/"
         aria-label="NAWAAB home"
-        className="flex h-20 w-52 items-center justify-center overflow-hidden"
+        className="flex h-16 w-40 items-center justify-center overflow-hidden sm:h-20 sm:w-52"
       >
         <img
           src={nawaabLogo}
@@ -36,7 +36,7 @@ export function Brand({ compact = false }: { compact?: boolean }) {
     <Link
       to="/"
       aria-label="NAWAAB home"
-      className="flex h-20 w-52 items-center justify-center overflow-hidden"
+      className="flex h-16 w-40 items-center justify-center overflow-hidden sm:h-20 sm:w-52"
     >
       <img
         src={nawaabLogo}
@@ -53,7 +53,7 @@ export function SiteHeader() {
     <header className="fixed inset-x-0 top-4 z-50 px-4">
       <nav
         aria-label="Primary navigation"
-        className="mx-auto flex h-[92px] max-w-7xl items-center justify-between rounded-lg border border-primary/30 bg-surface-glass px-5 shadow-royal backdrop-blur-xl lg:grid lg:grid-cols-[1fr_auto_1fr]"
+        className="mx-auto flex h-16 max-w-7xl items-center justify-between rounded-lg border border-primary/30 bg-surface-glass px-3 shadow-royal backdrop-blur-xl sm:px-5 lg:grid lg:h-[92px] lg:grid-cols-[1fr_auto_1fr]"
       >
         <div className="hidden items-center gap-7 lg:flex">
           {nav.slice(0, 3).map(([label, to]) => (
@@ -78,13 +78,13 @@ export function SiteHeader() {
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           onClick={() => setOpen(!open)}
-          className="grid size-11 place-items-center text-cream lg:hidden"
+          className="grid size-11 place-items-center rounded-md text-cream focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary lg:hidden"
         >
           {open ? <X /> : <Menu />}
         </button>
       </nav>
       {open && (
-        <div className="mx-auto mt-2 max-w-7xl rounded-lg border border-primary/30 bg-espresso p-5 shadow-royal lg:hidden">
+        <div className="mx-auto mt-2 max-w-7xl rounded-lg border border-primary/30 bg-espresso p-4 shadow-royal lg:hidden">
           <div className="grid gap-1">
             {nav.map(([label, to]) => (
               <Link
@@ -147,6 +147,8 @@ export function ImagePanel({
           src={imageSrc}
           alt={label}
           className={cn("absolute inset-0 size-full object-cover", imageClassName)}
+          loading={id.includes("hero") ? "eager" : "lazy"}
+          decoding="async"
         />
       )}
       <div className="absolute inset-0 bg-gradient-to-t from-espresso/90 via-transparent to-espresso/10" />
@@ -167,14 +169,14 @@ export function SectionTitle({
   light?: boolean;
 }) {
   return (
-    <div className="mb-10 max-w-2xl">
+    <div className="mb-8 max-w-2xl md:mb-10">
       <div className="mb-4 flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.28em] text-primary">
         <span className="h-px w-10 bg-primary" />
         {eyebrow}
       </div>
       <h2
         className={cn(
-          "text-4xl font-semibold leading-none md:text-6xl",
+          "text-[clamp(2.25rem,10vw,3rem)] font-semibold leading-none md:text-6xl",
           light ? "text-espresso" : "text-cream",
         )}
       >
@@ -210,7 +212,7 @@ export function PageHero({
   imageClassName?: string;
 }) {
   return (
-    <section className="relative min-h-[72vh] overflow-hidden pt-28">
+    <section className="relative min-h-[460px] overflow-hidden pt-20 md:min-h-[72vh] md:pt-28">
       <ImagePanel
         id={imageId}
         label={`${title} Image`}
@@ -219,10 +221,10 @@ export function PageHero({
         className="absolute inset-0 min-h-full slow-zoom"
       />
       <div className="absolute inset-0 bg-gradient-to-r from-espresso via-espresso/75 to-transparent" />
-      <div className="relative mx-auto flex min-h-[62vh] max-w-7xl items-end px-5 pb-16 md:px-8">
+      <div className="relative mx-auto flex min-h-[390px] max-w-7xl items-end px-5 pb-10 md:min-h-[62vh] md:px-8 md:pb-16">
         <div className="reveal max-w-3xl">
           <p className="mb-5 text-xs uppercase tracking-[0.28em] text-primary">{eyebrow}</p>
-          <h1 className="text-5xl font-semibold leading-[.92] text-cream md:text-7xl lg:text-8xl">
+          <h1 className="text-[clamp(2.75rem,13vw,4.5rem)] font-semibold leading-[.92] text-cream md:text-7xl lg:text-8xl">
             {title}
           </h1>
           <p className="mt-6 max-w-xl text-sm leading-7 text-cream/75 md:text-base">{copy}</p>
@@ -234,7 +236,7 @@ export function PageHero({
 
 export function SiteFooter() {
   return (
-    <footer className="border-t border-primary/20 bg-espresso px-5 py-16 text-cream">
+    <footer className="border-t border-primary/20 bg-espresso px-5 py-10 text-cream md:py-16">
       <div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-[1.3fr_1fr_1fr_1fr]">
         <div>
           <Brand />
@@ -319,25 +321,25 @@ function Social({ label, href, children }: { label: string; href: string; childr
 
 export function ContactActions() {
   return (
-    <div className="flex flex-wrap gap-3">
-      <Button asChild variant="royal">
+    <div className="grid gap-3 sm:flex sm:flex-wrap">
+      <Button asChild variant="royal" className="w-full sm:w-auto">
         <a href="tel:+919230004309">
           <Phone />
           Call
         </a>
       </Button>
-      <Button asChild variant="royalOutline">
+      <Button asChild variant="royalOutline" className="w-full sm:w-auto">
         <a href="mailto:support@nawaabthetasteofroyals.com">
           <Mail />
           Email
         </a>
       </Button>
-      <Button asChild variant="royalOutline">
+      <Button asChild variant="royalOutline" className="w-full sm:w-auto">
         <a href="https://wa.me/919230004309" target="_blank" rel="noopener noreferrer">
           WhatsApp
         </a>
       </Button>
-      <Button asChild variant="royalOutline">
+      <Button asChild variant="royalOutline" className="w-full sm:w-auto">
         <a href={socialLinks.maps} target="_blank" rel="noopener noreferrer">
           <MapPin />
           Directions
@@ -352,7 +354,7 @@ export function MapEmbed() {
     <div className="overflow-hidden rounded-lg border border-primary/25 bg-card">
       <iframe
         title="NAWAAB location on Google Maps"
-        className="h-80 w-full grayscale-[20%]"
+        className="h-64 w-full grayscale-[20%] md:h-80"
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
         src="https://www.google.com/maps?q=10C%20Southern%20Avenue%20Kolkata%20700026&output=embed"

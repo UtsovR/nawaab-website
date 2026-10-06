@@ -28,7 +28,7 @@ function Reservation() {
         imageId="reservation-ambience"
       />
       <section className="section-pad bg-maroon">
-        <div className="mx-auto grid max-w-6xl gap-12 px-5 lg:grid-cols-[.7fr_1.3fr] md:px-8">
+        <div className="mx-auto grid max-w-6xl gap-8 px-5 md:gap-12 lg:grid-cols-[.7fr_1.3fr] md:px-8">
           <div>
             <SectionTitle
               eyebrow="Plan your visit"

@@ -110,18 +110,18 @@ function Gallery() {
       />
       <section className="section-pad bg-cream px-5 text-espresso md:px-8">
         <div className="mx-auto max-w-7xl">
-          <div className="mb-10 flex gap-2 overflow-x-auto pb-2">
+          <div className="mb-8 flex snap-x snap-proximity gap-2 overflow-x-auto pb-2 md:mb-10">
             {cats.map((c) => (
               <button
                 key={c}
                 onClick={() => setFilter(c)}
-                className={`border px-4 py-2 text-[10px] uppercase tracking-widest ${filter === c ? "border-maroon bg-maroon text-cream" : "border-espresso/20"}`}
+                className={`snap-start whitespace-nowrap border px-4 py-3 text-[10px] uppercase tracking-widest ${filter === c ? "border-maroon bg-maroon text-cream" : "border-espresso/20"}`}
               >
                 {c}
               </button>
             ))}
           </div>
-          <div className="columns-2 gap-3 md:columns-3 lg:columns-4">
+          <div className="columns-1 gap-3 sm:columns-2 md:columns-3 lg:columns-4">
             {visible.map((p, i) => (
               <button
                 key={p.id}
@@ -132,7 +132,7 @@ function Gallery() {
                   id={p.id}
                   label={p.label}
                   imageSrc={p.src}
-                  className={i % 4 === 0 ? "min-h-96" : "min-h-64"}
+                  className={i % 4 === 0 ? "min-h-72 md:min-h-96" : "min-h-56 md:min-h-64"}
                 />
               </button>
             ))}
@@ -149,14 +149,14 @@ function Gallery() {
           <button
             aria-label="Close lightbox"
             onClick={() => setActive(null)}
-            className="absolute right-6 top-6 text-cream"
+            className="absolute right-4 top-4 grid size-11 place-items-center text-cream md:right-6 md:top-6"
           >
             <X />
           </button>
           <button
             aria-label="Previous image"
             onClick={() => setActive((active - 1 + visible.length) % visible.length)}
-            className="absolute left-4 text-primary"
+            className="absolute left-1 grid size-11 place-items-center text-primary md:left-4"
           >
             <ChevronLeft className="size-10" />
           </button>
@@ -164,12 +164,12 @@ function Gallery() {
             id={`${visible[active].id}-large`}
             label={visible[active].label}
             imageSrc={visible[active].src}
-            className="h-[75vh] w-[min(900px,80vw)]"
+            className="h-[68vh] w-[calc(100vw-5.5rem)] max-w-[900px] md:h-[75vh] md:w-[min(900px,80vw)]"
           />
           <button
             aria-label="Next image"
             onClick={() => setActive((active + 1) % visible.length)}
-            className="absolute right-4 text-primary"
+            className="absolute right-1 grid size-11 place-items-center text-primary md:right-4"
           >
             <ChevronRight className="size-10" />
           </button>

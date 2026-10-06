@@ -31,14 +31,14 @@ function MenuPage() {
 
       <nav
         aria-label="Menu categories"
-        className="sticky top-28 z-30 overflow-x-auto border-y border-primary/25 bg-espresso/95 px-4 shadow-lg backdrop-blur"
+        className="sticky top-20 z-30 overflow-x-auto border-y border-primary/25 bg-espresso/95 px-4 shadow-lg backdrop-blur md:top-28"
       >
-        <div className="mx-auto flex w-max min-w-full max-w-7xl gap-6 py-4 md:justify-center">
+        <div className="mx-auto flex w-max min-w-full max-w-7xl snap-x snap-proximity gap-6 py-4 md:justify-center">
           {menuNavigation.map(([label, id]) => (
             <a
               key={label}
               href={`#${id}`}
-              className="whitespace-nowrap text-[10px] font-semibold uppercase tracking-[.16em] text-cream transition-colors hover:text-primary focus-visible:text-primary focus-visible:outline-none"
+              className="snap-start whitespace-nowrap py-1 text-[10px] font-semibold uppercase tracking-[.16em] text-cream transition-colors hover:text-primary focus-visible:text-primary focus-visible:outline-none"
             >
               {label}
             </a>
@@ -53,13 +53,13 @@ function MenuPage() {
             key={section.id}
             className="scroll-mt-48 border-b border-primary/20 px-5 section-pad md:px-8"
           >
-            <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[minmax(15rem,.65fr)_minmax(0,1.35fr)]">
+            <div className="mx-auto grid max-w-7xl gap-8 md:gap-12 lg:grid-cols-[minmax(15rem,.65fr)_minmax(0,1.35fr)]">
               <header className="lg:sticky lg:top-48 lg:self-start">
                 <p className="text-[10px] font-semibold uppercase tracking-[.28em] text-primary">
                   {section.eyebrow}
                 </p>
                 <h2
-                  className={`mt-4 leading-[.92] ${sectionIndex === 0 ? "text-5xl md:text-7xl" : "text-4xl md:text-5xl"}`}
+                  className={`mt-4 leading-[.92] ${sectionIndex === 0 ? "text-[clamp(2.75rem,13vw,4rem)] md:text-7xl" : "text-[clamp(2.25rem,10vw,3rem)] md:text-5xl"}`}
                 >
                   {section.title}
                 </h2>

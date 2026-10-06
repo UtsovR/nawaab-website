@@ -30,7 +30,7 @@ function About() {
           <ImagePanel
             id="restaurant-interior"
             label="Restaurant Interior"
-            className="min-h-[500px]"
+            className="min-h-80 md:min-h-[500px]"
           />
           <div className="flex flex-col justify-center">
             <SectionTitle
@@ -56,9 +56,9 @@ function About() {
               ["03", "Generous Portions"],
               ["04", "Warm Hospitality"],
             ].map(([n, t]) => (
-              <div className="bg-background p-8" key={n}>
+              <div className="bg-background p-6 md:p-8" key={n}>
                 <span className="text-xs text-primary">{n}</span>
-                <h3 className="mt-10 text-3xl text-cream">{t}</h3>
+                <h3 className="mt-8 text-3xl text-cream md:mt-10">{t}</h3>
               </div>
             ))}
           </div>
@@ -67,7 +67,7 @@ function About() {
       <section className="section-pad bg-cream text-espresso">
         <div className="mx-auto max-w-7xl px-5 md:px-8">
           <SectionTitle light eyebrow="Our Kitchen" title="Made with care, finished with fire" />
-          <div className="grid auto-rows-[230px] gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid auto-rows-[200px] gap-3 sm:auto-rows-[230px] sm:grid-cols-2 lg:grid-cols-4">
             {[
               "biryani-preparation",
               "chef-image",

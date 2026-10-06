@@ -83,16 +83,22 @@ function Page() {
                           ? indoChinese
                           : undefined
                 }
-                className={i === 0 ? "min-h-[650px]" : "min-h-[430px]"}
+                className={i === 0 ? "min-h-96 md:min-h-[650px]" : "min-h-80 md:min-h-[430px]"}
               />
               <div className={i % 2 ? "md:-order-1" : ""}>
                 <p className="text-[10px] uppercase tracking-[.25em] text-maroon">
                   {i === 0 ? "The heart of our kitchen" : `Speciality ${i + 1}`}
                 </p>
-                <h2 className={`mt-3 ${i === 0 ? "text-6xl md:text-7xl" : "text-5xl"}`}>{title}</h2>
+                <h2
+                  className={`mt-3 ${i === 0 ? "text-[clamp(3rem,14vw,4.5rem)] md:text-7xl" : "text-[clamp(2.5rem,12vw,3rem)]"}`}
+                >
+                  {title}
+                </h2>
                 <p className="mt-6 max-w-md text-sm leading-7 text-espresso/65">{copy}</p>
-                <p className="mt-6 text-xs uppercase tracking-[.12em]">{dishes}</p>
-                <Button asChild variant="royal" size="lg" className="mt-8">
+                <p className="mt-6 text-xs uppercase leading-6 tracking-[.1em] sm:tracking-[.12em]">
+                  {dishes}
+                </p>
+                <Button asChild variant="royal" size="lg" className="mt-8 w-full sm:w-auto">
                   <Link to="/menu" hash={hash}>
                     Explore the Menu
                   </Link>
