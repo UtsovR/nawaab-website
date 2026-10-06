@@ -14,8 +14,7 @@ const buttonVariants = cva(
           "bg-primary text-primary-foreground shadow-royal hover:-translate-y-0.5 hover:bg-primary/90",
         royalOutline:
           "border border-primary/60 bg-surface-glass text-cream hover:-translate-y-0.5 hover:bg-primary hover:text-primary-foreground",
-        ivory:
-          "bg-cream text-espresso shadow-royal hover:-translate-y-0.5 hover:bg-cream/90",
+        ivory: "bg-cream text-espresso shadow-royal hover:-translate-y-0.5 hover:bg-cream/90",
         destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90",
         outline:
           "border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground",

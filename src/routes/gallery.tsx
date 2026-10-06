@@ -13,7 +13,7 @@ const image = (name: string) => galleryAssets[`../../gallery_asstes/${name}`];
 export const Route = createFileRoute("/gallery")({
   head: () => ({
     meta: [
-      { title: "Gallery | Inside NAWAAB Kolkata" },
+      { title: "Inside NAWAAB | Restaurant & Food Gallery" },
       {
         name: "description",
         content: "Step inside NAWAAB through our food, kitchen and restaurant gallery.",

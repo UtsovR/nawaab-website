@@ -3,6 +3,7 @@ import { Menu, X, Instagram, Facebook, MapPin, Phone, Mail, ArrowUpRight } from 
 import { useState, type ReactNode } from "react";
 import { Button } from "./ui/button";
 import { cn } from "../lib/utils";
+import { socialLinks } from "../lib/site-config";
 import nawaabLogo from "../../logo/NAWAAB_LOGO.png";
 
 const nav = [
@@ -137,15 +138,14 @@ export function ImagePanel({
   return (
     <div
       id={id}
-      role="img"
-      aria-label={`${label} placeholder`}
+      role={imageSrc ? undefined : "img"}
+      aria-label={imageSrc ? undefined : label}
       className={cn("image-grain group relative min-h-64 overflow-hidden", className)}
     >
       {imageSrc && (
         <img
           src={imageSrc}
-          alt=""
-          aria-hidden="true"
+          alt={label}
           className={cn("absolute inset-0 size-full object-cover", imageClassName)}
         />
       )}
@@ -274,19 +274,13 @@ export function SiteFooter() {
         <div>
           <FooterTitle>Stay close</FooterTitle>
           <div className="flex gap-3">
-            <Social
-              label="Instagram"
-              href="https://www.instagram.com/nawaab.restaurant?stkn=ZGQyNXdvbW93ZWM4"
-            >
+            <Social label="Instagram" href={socialLinks.instagram}>
               <Instagram />
             </Social>
-            <Social
-              label="Facebook"
-              href="https://www.facebook.com/share/1Heean9nWN/?mibextid=wwXIfr"
-            >
+            <Social label="Facebook" href={socialLinks.facebook}>
               <Facebook />
             </Social>
-            <Social label="Google Business" href="https://maps.app.goo.gl/ziqPZu6dyvv8KpSP8">
+            <Social label="Google Business" href={socialLinks.maps}>
               <MapPin />
             </Social>
           </div>
@@ -339,16 +333,12 @@ export function ContactActions() {
         </a>
       </Button>
       <Button asChild variant="royalOutline">
-        <a href="https://wa.me/919230004309" target="_blank" rel="noreferrer">
+        <a href="https://wa.me/919230004309" target="_blank" rel="noopener noreferrer">
           WhatsApp
         </a>
       </Button>
       <Button asChild variant="royalOutline">
-        <a
-          href="https://www.google.com/maps/dir/?api=1&destination=10C%20Southern%20Avenue%20Kolkata%20700026"
-          target="_blank"
-          rel="noreferrer"
-        >
+        <a href={socialLinks.maps} target="_blank" rel="noopener noreferrer">
           <MapPin />
           Directions
         </a>

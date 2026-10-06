@@ -17,6 +17,7 @@ import signatureBiryani from "../../image_asstes/signature_biriyani.jpeg";
 import specialMutton from "../../image_asstes/special_mutton.png";
 import stuffedAfganiChicken from "../../image_asstes/afgani.png";
 import tandoorImage from "../../image_asstes/tandoor.png";
+import { siteDescription } from "../lib/site-config";
 
 const description =
   "Discover NAWAAB – The Taste of Royals in Kolkata. Enjoy signature Biryani, smoky Tandoor dishes, authentic Indian favourites and Indo-Chinese classics.";
@@ -28,8 +29,14 @@ export const Route = createFileRoute("/")({
           "NAWAAB – The Taste of Royals | Biryani, Indian, Tandoor & Chinese Restaurant in Kolkata",
       },
       { name: "description", content: description },
+      { name: "description", content: siteDescription },
+      {
+        title:
+          "NAWAAB – The Taste of Royals | Biryani, Tandoor, Indian & Chinese Restaurant in Kolkata",
+      },
       { property: "og:title", content: "NAWAAB – The Taste of Royals" },
       { property: "og:description", content: description },
+      { property: "og:description", content: siteDescription },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],

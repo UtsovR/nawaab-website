@@ -3,7 +3,7 @@ import { ImagePanel, PageHero, SectionTitle } from "../components/site";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "About NAWAAB | A Royal Take on Everyday Cravings" },
+      { title: "About NAWAAB – The Taste of Royals" },
       {
         name: "description",
         content: "Discover the story, philosophy and kitchen behind NAWAAB in Kolkata.",

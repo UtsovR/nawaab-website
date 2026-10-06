@@ -5,7 +5,7 @@ import { menuNavigation, menuSections } from "../lib/restaurant-data";
 export const Route = createFileRoute("/menu")({
   head: () => ({
     meta: [
-      { title: "Menu | NAWAAB Kolkata" },
+      { title: "NAWAAB Menu | Biryani, Tandoor, Indian & Chinese" },
       {
         name: "description",
         content:

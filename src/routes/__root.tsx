@@ -9,9 +9,18 @@ import {
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 import { SiteFooter, SiteHeader } from "../components/site";
+import socialImage from "../../image_asstes/homepage_bg.jpeg";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { restaurantSchema, siteDescription, siteName, siteUrl } from "../lib/site-config";
+
+const socialImageUrl = siteUrl ? new URL(socialImage, siteUrl).toString() : socialImage;
+const structuredData = {
+  ...restaurantSchema,
+  image: socialImageUrl,
+  ...(siteUrl ? { url: siteUrl } : {}),
+};
 
 function NotFoundComponent() {
   return (
@@ -79,10 +88,32 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "NAWAAB – The Taste of Royals" },
-      { name: "description", content: "A premium Biryani, Tandoor, Indian and Indo-Chinese restaurant in Kolkata." },
+      {
+        name: "description",
+        content: "A premium Biryani, Tandoor, Indian and Indo-Chinese restaurant in Kolkata.",
+      },
       { name: "author", content: "NAWAAB" },
+      {
+        title:
+          "NAWAAB – The Taste of Royals | Biryani, Tandoor, Indian & Chinese Restaurant in Kolkata",
+      },
+      { name: "description", content: siteDescription },
+      { name: "robots", content: "index, follow" },
+      { name: "theme-color", content: "#1b0d08" },
       { property: "og:type", content: "website" },
+      { property: "og:title", content: siteName },
+      {
+        property: "og:description",
+        content:
+          "Biryani is the Heart of NAWAAB. Explore signature Biryani, Tandoor, Indian and Indo-Chinese favourites in Kolkata.",
+      },
+      { property: "og:image", content: socialImageUrl },
+      { property: "og:site_name", content: siteName },
+      ...(siteUrl ? [{ property: "og:url", content: siteUrl }] : []),
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: siteName },
+      { name: "twitter:description", content: siteDescription },
+      { name: "twitter:image", content: socialImageUrl },
     ],
     links: [
       {
@@ -90,9 +121,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: appCss,
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "apple-touch-icon", href: "/favicon.ico" },
+      { rel: "manifest", href: "/site.webmanifest" },
+      ...(siteUrl ? [{ rel: "canonical", href: siteUrl }] : []),
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600&display=swap" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600&display=swap",
+      },
     ],
   }),
   shellComponent: RootShell,
@@ -106,6 +143,7 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
+        <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
       </head>
       <body>
         {children}

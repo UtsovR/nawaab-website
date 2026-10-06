@@ -6,8 +6,19 @@
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
+const deploymentUrl = process.env.VITE_SITE_URL ?? process.env.URL;
+
 export default defineConfig({
+  vite: {
+    // Netlify exposes URL at build time. Map it to the client-facing metadata URL.
+    define: deploymentUrl
+      ? { "import.meta.env.VITE_SITE_URL": JSON.stringify(deploymentUrl) }
+      : undefined,
+  },
   tanstackStart: {
+    spa: {
+      enabled: true,
+    },
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this
     server: { entry: "server" },

@@ -9,7 +9,7 @@ import tandoorPlatter from "../../image_asstes/tandoor_platter.png";
 export const Route = createFileRoute("/specialties")({
   head: () => ({
     meta: [
-      { title: "Our Specialities | NAWAAB" },
+      { title: "NAWAAB Specialities | Biryani, Tandoor, Indian & Indo-Chinese" },
       {
         name: "description",
         content:
