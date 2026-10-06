@@ -9,6 +9,9 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 const deploymentUrl = process.env.VITE_SITE_URL ?? process.env.URL;
 
 export default defineConfig({
+  // Netlify publishes this project as a static SPA. Disable Nitro so it does not
+  // create a competing server bundle that TanStack's prerenderer cannot load.
+  nitro: false,
   vite: {
     // Netlify exposes URL at build time. Map it to the client-facing metadata URL.
     define: deploymentUrl
