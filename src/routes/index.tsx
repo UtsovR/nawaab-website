@@ -17,6 +17,14 @@ import signatureBiryani from "../../image_asstes/signature_biriyani.jpeg";
 import specialMutton from "../../image_asstes/special_mutton.png";
 import stuffedAfganiChicken from "../../image_asstes/afgani.png";
 import tandoorImage from "../../image_asstes/tandoor.png";
+import interior01 from "../../gallery_asstes/IMG_7273.jpeg";
+import interior02 from "../../gallery_asstes/IMG_7274.jpeg";
+import interior03 from "../../gallery_asstes/IMG_7275.jpeg";
+import interior04 from "../../gallery_asstes/IMG_7276.jpeg";
+import interior05 from "../../gallery_asstes/IMG_7277.jpeg";
+import interior06 from "../../gallery_asstes/IMG_7278.jpeg";
+import interior07 from "../../gallery_asstes/IMG_7279.jpeg";
+import interior08 from "../../gallery_asstes/IMG_7280.jpeg";
 import { siteDescription } from "../lib/site-config";
 
 const description =
@@ -58,6 +66,16 @@ const dishes = [
   ["chilli-chicken", "Chilli Chicken", "Chinese"],
   ["mixed-fried-rice", "Mixed Fried Rice", "Chinese"],
 ] as const;
+const interiorImages = [
+  interior01,
+  interior02,
+  interior03,
+  interior04,
+  interior05,
+  interior06,
+  interior07,
+  interior08,
+];
 function Home() {
   return (
     <main>
@@ -243,7 +261,8 @@ function Home() {
               <ImagePanel
                 key={i}
                 id={`gallery-0${i + 1}`}
-                label={`Food Gallery Image ${i + 1}`}
+                label={`NAWAAB restaurant interior ${i + 1}`}
+                imageSrc={interiorImages[i]}
                 className={`mb-3 break-inside-avoid ${i % 3 === 0 ? "min-h-72 md:min-h-96" : "min-h-56 md:min-h-64"}`}
               />
             ))}
