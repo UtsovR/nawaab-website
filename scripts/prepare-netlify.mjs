@@ -35,7 +35,9 @@ try {
 }
 
 await rm(destination, { recursive: true, force: true });
-await rename(stagingDirectory, destination);
+await mkdir(destination, { recursive: true });
+await cp(stagingDirectory, destination, { recursive: true });
+await rm(stagingDirectory, { recursive: true, force: true });
 
 const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">

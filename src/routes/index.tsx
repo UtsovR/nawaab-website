@@ -93,7 +93,7 @@ function Home() {
             <p className="mb-6 text-xs uppercase tracking-[0.3em] text-primary">
               NAWAAB — The Taste of Royals
             </p>
-            <h1 className="max-w-4xl text-[clamp(3rem,14vw,5rem)] font-semibold leading-[.88] text-cream md:text-8xl lg:text-9xl">
+            <h1 className="max-w-4xl text-[clamp(3rem,14vw,5rem)] font-semibold leading-[.88] text-cream md:text-8xl lg:text-8xl">
               <span className="text-primary">Biryani</span> is the Heart of NAWAAB
             </h1>
             <p className="mt-7 max-w-2xl text-sm leading-7 text-cream/75 md:text-base">
