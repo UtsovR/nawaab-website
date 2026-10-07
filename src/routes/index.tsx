@@ -100,7 +100,7 @@ function Home() {
               Experience aromatic Biryani, smoky Tandoor favourites, rich Indian classics and bold
               Indo-Chinese flavours, prepared with care and served with a royal touch.
             </p>
-            <div className="mt-8 grid w-full gap-3 sm:flex sm:w-auto sm:flex-wrap">
+            <div className="mt-5 grid w-full gap-3 sm:mt-6 sm:flex sm:w-auto sm:flex-wrap">
               <Button asChild variant="royal" size="lg" className="w-full sm:w-auto">
                 <Link to="/menu">
                   View Menu <ArrowRight />
