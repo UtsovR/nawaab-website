@@ -1,24 +1,17 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "../components/site";
 import { menuNavigation, menuSections } from "../lib/restaurant-data";
-import { siteUrl } from "../lib/site-config";
-import menuBackground from "../../image_asstes/our_menu_bg.png";
+import { createSeo } from "../lib/site-config";
+import menuBackground from "../../image_asstes/optimized/our_menu_bg.png.webp";
 
 export const Route = createFileRoute("/menu")({
-  head: () => ({
-    links: [{ rel: "canonical", href: `${siteUrl}/menu` }],
-    meta: [
-      { title: "NAWAAB Menu | Biryani, Tandoor, Indian & Chinese" },
-      {
-        name: "description",
-        content:
-          "Explore the complete NAWAAB menu, with Biryani first and royal favourites for every table.",
-      },
-      { property: "og:title", content: "The NAWAAB Menu" },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
+  head: () =>
+    createSeo({
+      path: "/menu",
+      title: "NAWAAB Menu | Biryani, Tandoor, Indian & Indo-Chinese",
+      description:
+        "Explore the NAWAAB menu featuring signature Biryani, Tandoor kebabs, Indian main courses, Indo-Chinese favourites, mocktails and desserts.",
+    }),
   component: MenuPage,
 });
 

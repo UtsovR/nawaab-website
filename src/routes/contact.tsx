@@ -2,23 +2,15 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ContactActions, MapEmbed, PageHero, SectionTitle } from "../components/site";
 import { ContactForm } from "../components/forms";
 import { Button } from "../components/ui/button";
-import { siteUrl } from "../lib/site-config";
+import { createSeo } from "../lib/site-config";
 export const Route = createFileRoute("/contact")({
-  head: () => ({
-    links: [{ rel: "canonical", href: `${siteUrl}/contact` }],
-    meta: [
-      { title: "Contact NAWAAB | Southern Avenue, Kolkata" },
-      {
-        name: "description",
-        content:
-          "Find NAWAAB on Southern Avenue, Kolkata. Call, email, get directions or reserve a table.",
-      },
-      { property: "og:title", content: "Visit NAWAAB Kolkata" },
-      { property: "og:description", content: "Find us at 10C Southern Avenue, Kolkata." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
+  head: () =>
+    createSeo({
+      path: "/contact",
+      title: "Contact NAWAAB | Southern Avenue, Kolkata",
+      description:
+        "Contact and visit NAWAAB on Southern Avenue, Kolkata. Find our location, phone number and reserve your table directly through WhatsApp.",
+    }),
   component: Contact,
 });
 function Contact() {

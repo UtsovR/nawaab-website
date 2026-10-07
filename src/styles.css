@@ -157,30 +157,64 @@
     min-width: 320px;
     overflow-x: hidden;
   }
-  img, iframe { max-width: 100%; }
-  h1, h2, h3, .font-display { font-family: var(--font-display); }
-  html { scroll-behavior: smooth; }
-  ::selection { background: var(--primary); color: var(--primary-foreground); }
+  img,
+  iframe {
+    max-width: 100%;
+  }
+  h1,
+  h2,
+  h3,
+  .font-display {
+    font-family: var(--font-display);
+  }
+  ::selection {
+    background: var(--primary);
+    color: var(--primary-foreground);
+  }
 }
 
 @utility image-grain {
   background-image:
     linear-gradient(150deg, color-mix(in oklab, var(--maroon) 65%, transparent), transparent 55%),
-    radial-gradient(circle at 72% 24%, color-mix(in oklab, var(--gold-soft) 30%, transparent), transparent 32%),
-    linear-gradient(25deg, var(--espresso), color-mix(in oklab, var(--secondary) 80%, var(--espresso)));
+    radial-gradient(
+      circle at 72% 24%,
+      color-mix(in oklab, var(--gold-soft) 30%, transparent),
+      transparent 32%
+    ),
+    linear-gradient(
+      25deg,
+      var(--espresso),
+      color-mix(in oklab, var(--secondary) 80%, var(--espresso))
+    );
 }
-@utility section-pad { padding-block: clamp(2.75rem, 7vw, 8rem); }
+@utility section-pad {
+  padding-block: clamp(2.75rem, 7vw, 8rem);
+}
 
 @media (prefers-reduced-motion: no-preference) {
-  .slow-zoom { animation: slowZoom 18s ease-in-out infinite alternate; }
-  .reveal { animation: reveal .8s ease both; }
-  @keyframes slowZoom { to { transform: scale(1.05); } }
-  @keyframes reveal { from { opacity: 0; transform: translateY(20px); } }
+  .slow-zoom {
+    animation: slowZoom 18s ease-in-out infinite alternate;
+  }
+  .reveal {
+    animation: reveal 0.8s ease both;
+  }
+  @keyframes slowZoom {
+    to {
+      transform: scale(1.05);
+    }
+  }
+  @keyframes reveal {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
@@ -188,5 +222,7 @@
 }
 
 @media (max-width: 767px) {
-  .slow-zoom { animation: none; }
+  .slow-zoom {
+    animation: none;
+  }
 }

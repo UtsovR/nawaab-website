@@ -1,23 +1,15 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero, SectionTitle } from "../components/site";
 import { ReservationForm } from "../components/forms";
-import { siteUrl } from "../lib/site-config";
+import { createSeo } from "../lib/site-config";
 export const Route = createFileRoute("/reservation")({
-  head: () => ({
-    links: [{ rel: "canonical", href: `${siteUrl}/reservation` }],
-    meta: [
-      { title: "Reserve a Table | NAWAAB Kolkata" },
-      {
-        name: "description",
-        content:
-          "Request a table at NAWAAB for family meals, dinner with friends and special celebrations.",
-      },
-      { property: "og:title", content: "Reserve Your Table at NAWAAB" },
-      { property: "og:description", content: "Good food tastes even better when shared." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
+  head: () =>
+    createSeo({
+      path: "/reservation",
+      title: "Reserve a Table | NAWAAB Kolkata",
+      description:
+        "Reserve your table at NAWAAB in Kolkata for family meals, dinner with friends and special celebrations through WhatsApp.",
+    }),
   component: Reservation,
 });
 function Reservation() {

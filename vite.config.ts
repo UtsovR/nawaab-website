@@ -6,21 +6,42 @@
 // You can pass additional config via defineConfig({ vite: { ... }, etc... }) if needed.
 import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 
-const deploymentUrl = process.env.VITE_SITE_URL ?? process.env.URL;
+const deploymentUrl = process.env["VITE_SITE_URL"];
+
+const staticPages = [
+  "/",
+  "/about",
+  "/menu",
+  "/specialties",
+  "/gallery",
+  "/contact",
+  "/reservation",
+].map((path) => ({ path }));
 
 export default defineConfig({
   // Netlify publishes this project as a static SPA. Disable Nitro so it does not
   // create a competing server bundle that TanStack's prerenderer cannot load.
   nitro: false,
-  vite: {
-    // Netlify exposes URL at build time. Map it to the client-facing metadata URL.
-    define: deploymentUrl
-      ? { "import.meta.env.VITE_SITE_URL": JSON.stringify(deploymentUrl) }
-      : undefined,
-  },
+  vite: deploymentUrl
+    ? {
+        define: { "import.meta.env.VITE_SITE_URL": JSON.stringify(deploymentUrl) },
+      }
+    : {},
   tanstackStart: {
+    pages: staticPages,
+    prerender: {
+      enabled: true,
+      crawlLinks: false,
+      autoStaticPathsDiscovery: false,
+    },
     spa: {
       enabled: true,
+      // Keep the client-only fallback separate from the prerendered homepage.
+      maskPath: "/spa-shell",
+      prerender: {
+        outputPath: "/_shell",
+        crawlLinks: false,
+      },
     },
     // Redirect TanStack Start's bundled server entry to src/server.ts (our SSR error wrapper).
     // nitro/vite builds from this

@@ -1,11 +1,12 @@
-import { access, cp, mkdir, rename, rm, writeFile } from "node:fs/promises";
+import { access, cp, mkdir, rm, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 
 const destination = resolve("dist");
 const stagingDirectory = resolve(".netlify-static");
 const outputCandidates = [resolve("dist/client"), resolve(".output/public")];
-const rawSiteUrl = process.env.VITE_SITE_URL ?? "https://nawaabthetasteofroyals.com";
-const siteUrl = rawSiteUrl.replace(/\/$/, "");
+const productionSiteUrl = "https://nawaabthetasteofroyals.com";
+const configuredSiteUrl = process.env.VITE_SITE_URL?.replace(/\/$/, "");
+const siteUrl = configuredSiteUrl === productionSiteUrl ? configuredSiteUrl : productionSiteUrl;
 const routes = ["/", "/about", "/menu", "/specialties", "/gallery", "/contact", "/reservation"];
 
 let source;
@@ -26,13 +27,6 @@ if (!source) {
 await rm(stagingDirectory, { recursive: true, force: true });
 await mkdir(stagingDirectory, { recursive: true });
 await cp(source, stagingDirectory, { recursive: true });
-
-try {
-  await access(resolve(stagingDirectory, "_shell.html"));
-  await rename(resolve(stagingDirectory, "_shell.html"), resolve(stagingDirectory, "index.html"));
-} catch {
-  // TanStack's native static build already emits index.html.
-}
 
 await rm(destination, { recursive: true, force: true });
 await mkdir(destination, { recursive: true });

@@ -1,10 +1,10 @@
 import { Link } from "@tanstack/react-router";
 import { Menu, X, Instagram, Facebook, MapPin, Phone, Mail, ArrowUpRight } from "lucide-react";
-import { useState, type ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 import { Button } from "./ui/button";
 import { cn } from "../lib/utils";
 import { socialLinks } from "../lib/site-config";
-import nawaabLogo from "../../logo/NAWAAB_LOGO.png";
+import nawaabLogo from "../../logo/nawaab-logo-optimized.png";
 
 const nav = [
   ["Home", "/"],
@@ -30,11 +30,6 @@ export function Brand({ compact = false }: { compact?: boolean }) {
           loading="eager"
           fetchPriority="high"
           decoding="async"
-          width={208}
-          height={80}
-          loading="eager"
-          fetchPriority="high"
-          decoding="async"
           alt="NAWAAB — The Taste of Royals"
           className="h-full w-full object-cover object-center brightness-0 invert"
         />
@@ -50,6 +45,10 @@ export function Brand({ compact = false }: { compact?: boolean }) {
     >
       <img
         src={nawaabLogo}
+        width={208}
+        height={80}
+        loading="lazy"
+        decoding="async"
         alt="NAWAAB — The Taste of Royals"
         className="h-full w-full object-cover object-center brightness-0 invert"
       />
@@ -59,6 +58,15 @@ export function Brand({ compact = false }: { compact?: boolean }) {
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
+  useEffect(() => {
+    if (!open) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [open]);
+
   return (
     <header className="fixed inset-x-0 top-4 z-50 px-4">
       <nav
@@ -87,6 +95,7 @@ export function SiteHeader() {
           type="button"
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
+          aria-controls="mobile-navigation"
           onClick={() => setOpen(!open)}
           className="grid size-11 place-items-center rounded-md text-cream focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary lg:hidden"
         >
@@ -94,7 +103,10 @@ export function SiteHeader() {
         </button>
       </nav>
       {open && (
-        <div className="mx-auto mt-2 max-w-7xl rounded-lg border border-primary/30 bg-espresso p-4 shadow-royal lg:hidden">
+        <div
+          id="mobile-navigation"
+          className="mx-auto mt-2 max-w-7xl rounded-lg border border-primary/30 bg-espresso p-4 shadow-royal lg:hidden"
+        >
           <div className="grid gap-1">
             {nav.map(([label, to]) => (
               <Link
@@ -122,7 +134,7 @@ function NavLink({ to, children }: { to: (typeof nav)[number][1]; children: Reac
   return (
     <Link
       to={to}
-      className="group relative py-2 text-xs uppercase tracking-[0.14em] text-cream transition-colors hover:text-primary"
+      className="group relative py-2 text-xs uppercase tracking-[0.14em] text-cream transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
     >
       <span>{children}</span>
       <span className="absolute inset-x-0 bottom-0 h-px origin-left scale-x-0 bg-primary transition-transform group-hover:scale-x-100" />
@@ -136,14 +148,18 @@ export function ImagePanel({
   className = "",
   children,
   imageSrc,
+  imageSrcSet,
+  imageSizes,
   imageClassName,
 }: {
   id: string;
   label: string;
   className?: string;
   children?: ReactNode;
-  imageSrc?: string;
-  imageClassName?: string;
+  imageSrc?: string | undefined;
+  imageSrcSet?: string | undefined;
+  imageSizes?: string | undefined;
+  imageClassName?: string | undefined;
 }) {
   return (
     <div
@@ -155,6 +171,8 @@ export function ImagePanel({
       {imageSrc && (
         <img
           src={imageSrc}
+          srcSet={imageSrcSet}
+          sizes={imageSizes}
           alt={label}
           className={cn("absolute inset-0 size-full object-cover", imageClassName)}
           loading={id.includes("hero") ? "eager" : "lazy"}
@@ -226,7 +244,7 @@ export function PageHero({
     <section className="relative min-h-[460px] overflow-hidden pt-20 md:min-h-[72vh] md:pt-28">
       <ImagePanel
         id={imageId}
-        label={`${title} Image`}
+        label={`${title} background at NAWAAB`}
         imageSrc={imageSrc}
         imageClassName={imageClassName ?? "brightness-75 saturate-50 opacity-65"}
         className="absolute inset-0 min-h-full slow-zoom"
@@ -323,7 +341,7 @@ function Social({ label, href, children }: { label: string; href: string; childr
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      className="grid size-10 place-items-center rounded-full border border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground"
+      className="grid size-10 place-items-center rounded-full border border-primary/30 text-primary hover:bg-primary hover:text-primary-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
     >
       {children}
     </a>

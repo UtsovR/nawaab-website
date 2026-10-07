@@ -1,26 +1,23 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   Outlet,
   Link,
-  createRootRouteWithContext,
+  createRootRoute,
   useRouter,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
 import { SiteFooter, SiteHeader } from "../components/site";
-import socialImage from "../../image_asstes/homepage_bg.jpeg";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
-import { restaurantSchema, siteDescription, siteName, siteUrl } from "../lib/site-config";
-
-const socialImageUrl = siteUrl ? new URL(socialImage, siteUrl).toString() : socialImage;
-const structuredData = {
-  ...restaurantSchema,
-  image: socialImageUrl,
-  ...(siteUrl ? { url: siteUrl } : {}),
-};
+import {
+  restaurantSchema,
+  siteDescription,
+  siteName,
+  siteUrl,
+  socialImageUrl,
+} from "../lib/site-config";
 
 function NotFoundComponent() {
   return (
@@ -82,16 +79,11 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
-export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+export const Route = createRootRoute({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "NAWAAB – The Taste of Royals" },
-      {
-        name: "description",
-        content: "A premium Biryani, Tandoor, Indian and Indo-Chinese restaurant in Kolkata.",
-      },
       { name: "author", content: "NAWAAB" },
       {
         title:
@@ -109,7 +101,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:image", content: socialImageUrl },
       { property: "og:site_name", content: siteName },
-      ...(siteUrl ? [{ property: "og:url", content: siteUrl }] : []),
+      { property: "og:url", content: siteUrl },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: siteName },
       { name: "twitter:description", content: siteDescription },
@@ -120,10 +112,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/nawaab-favicon.png", type: "image/png" },
-      { rel: "apple-touch-icon", href: "/nawaab-favicon.png" },
+      { rel: "icon", href: "/favicon.ico", sizes: "any" },
+      { rel: "icon", href: "/favicon-16x16.png", type: "image/png", sizes: "16x16" },
+      { rel: "icon", href: "/favicon-32x32.png", type: "image/png", sizes: "32x32" },
+      { rel: "apple-touch-icon", href: "/apple-touch-icon.png", sizes: "180x180" },
       { rel: "manifest", href: "/site.webmanifest" },
-      { rel: "preload", href: socialImage, as: "image", fetchPriority: "high" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
@@ -142,15 +135,8 @@ function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>
-        <script>{`(() => {
-          if ("scrollRestoration" in history) history.scrollRestoration = "manual";
-          const navigation = performance.getEntriesByType("navigation")[0];
-          if (!location.hash && navigation?.type !== "back_forward") {
-            window.scrollTo(0, 0);
-          }
-        })();`}</script>
         <HeadContent />
-        <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
+        <script type="application/ld+json">{JSON.stringify(restaurantSchema)}</script>
       </head>
       <body>
         {children}
@@ -161,13 +147,13 @@ function RootShell({ children }: { children: ReactNode }) {
 }
 
 function RootComponent() {
-  const { queryClient } = Route.useRouteContext();
-
   return (
-    <QueryClientProvider client={queryClient}>
+    <>
       <SiteHeader />
-      <Outlet />
+      <div className="min-h-[100svh]">
+        <Outlet />
+      </div>
       <SiteFooter />
-    </QueryClientProvider>
+    </>
   );
 }

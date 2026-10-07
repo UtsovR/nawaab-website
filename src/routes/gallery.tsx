@@ -2,30 +2,34 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { ImagePanel, PageHero } from "../components/site";
-import intBackground from "../../image_asstes/int_bg.png";
-import { siteUrl } from "../lib/site-config";
+import intBackground from "../../image_asstes/optimized/int_bg.png.webp";
+import { createSeo } from "../lib/site-config";
 
-const galleryAssets = import.meta.glob("../../gallery_asstes/*.{jpeg,JPEG,png}", {
+const galleryThumbnails = import.meta.glob("../../gallery_asstes/optimized/thumb/*.webp", {
+  eager: true,
+  import: "default",
+}) as Record<string, string>;
+const galleryFullImages = import.meta.glob("../../gallery_asstes/optimized/full/*.webp", {
   eager: true,
   import: "default",
 }) as Record<string, string>;
 
-const image = (name: string) => galleryAssets[`../../gallery_asstes/${name}`];
+function galleryAsset(assets: Record<string, string>, directory: "thumb" | "full", name: string) {
+  const asset = assets[`../../gallery_asstes/optimized/${directory}/${name}.webp`];
+  if (!asset) throw new Error(`Missing optimized gallery asset: ${directory}/${name}.webp`);
+  return asset;
+}
+
+const thumbnail = (name: string) => galleryAsset(galleryThumbnails, "thumb", name);
+const fullImage = (name: string) => galleryAsset(galleryFullImages, "full", name);
 export const Route = createFileRoute("/gallery")({
-  head: () => ({
-    links: [{ rel: "canonical", href: `${siteUrl}/gallery` }],
-    meta: [
-      { title: "Inside NAWAAB | Restaurant & Food Gallery" },
-      {
-        name: "description",
-        content: "Step inside NAWAAB through our food, kitchen and restaurant gallery.",
-      },
-      { property: "og:title", content: "Inside NAWAAB" },
-      { property: "og:description", content: "Biryani, fire, flavour and warm hospitality." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
+  head: () =>
+    createSeo({
+      path: "/gallery",
+      title: "Inside NAWAAB | Restaurant & Food Gallery",
+      description:
+        "Explore NAWAAB through our gallery of signature dishes, elegant interiors and warm dining spaces in Kolkata.",
+    }),
   component: Gallery,
 });
 const cats = [
@@ -39,7 +43,19 @@ const cats = [
   "Restaurant",
   "Dining",
 ];
-const pics = [
+const categoryAlt = {
+  Biryani: "NAWAAB signature biryani",
+  Tandoor: "Assorted tandoor kebabs at NAWAAB",
+  Indian: "Indian cuisine served at NAWAAB",
+  Chinese: "Indo-Chinese favourites at NAWAAB",
+  Drinks: "NAWAAB handcrafted mocktail",
+  Interior: "NAWAAB restaurant dining interior",
+  Restaurant: "NAWAAB restaurant interior",
+  Dining: "Dining space inside NAWAAB",
+} as const;
+type GalleryCategory = keyof typeof categoryAlt;
+
+const galleryEntries: ReadonlyArray<readonly [string, GalleryCategory]> = [
   ["barrackpore style biryani in handi.jpg.jpeg", "Biryani"],
   ["Moody Mutton Biryani Feast.png", "Biryani"],
   ["Cheesy Grilled Chicken Drumsticks with Chutney.png", "Tandoor"],
@@ -90,11 +106,13 @@ const pics = [
   ["IMG_7295.jpeg", "Dining"],
   ["IMG_7300.jpeg", "Dining"],
   ["IMG_7301.jpeg", "Dining"],
-].map(([file, cat], index) => ({
+];
+const pics = galleryEntries.map(([file, cat], index) => ({
   id: `gallery-${String(index + 1).padStart(2, "0")}`,
   cat,
-  label: `${cat} image ${index + 1}`,
-  src: image(file),
+  label: `${categoryAlt[cat]} ${index + 1}`,
+  thumbnail: thumbnail(file),
+  full: fullImage(file),
 }));
 function Gallery() {
   const [filter, setFilter] = useState("All");
@@ -117,6 +135,7 @@ function Gallery() {
               <button
                 key={c}
                 onClick={() => setFilter(c)}
+                aria-pressed={filter === c}
                 className={`snap-start whitespace-nowrap border px-4 py-3 text-[10px] uppercase tracking-widest ${filter === c ? "border-maroon bg-maroon text-cream" : "border-espresso/20"}`}
               >
                 {c}
@@ -133,7 +152,8 @@ function Gallery() {
                 <ImagePanel
                   id={p.id}
                   label={p.label}
-                  imageSrc={p.src}
+                  imageSrc={p.thumbnail}
+                  imageSizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 25vw"
                   className={i % 4 === 0 ? "min-h-72 md:min-h-96" : "min-h-56 md:min-h-64"}
                 />
               </button>
@@ -165,7 +185,8 @@ function Gallery() {
           <ImagePanel
             id={`${visible[active].id}-large`}
             label={visible[active].label}
-            imageSrc={visible[active].src}
+            imageSrc={visible[active].full}
+            imageSizes="(max-width: 767px) calc(100vw - 5.5rem), min(900px, 80vw)"
             className="h-[68vh] w-[calc(100vw-5.5rem)] max-w-[900px] md:h-[75vh] md:w-[min(900px,80vw)]"
           />
           <button

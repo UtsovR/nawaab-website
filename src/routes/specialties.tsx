@@ -1,28 +1,20 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ImagePanel, PageHero } from "../components/site";
 import { Button } from "../components/ui/button";
-import biriSpe from "../../image_asstes/biri_spe.png";
-import biryaniBackground from "../../image_asstes/biriyani_bg.png";
-import indianPlatter from "../../image_asstes/indian_platter.png";
-import indoChinese from "../../image_asstes/indo_chinese.png";
-import tandoorPlatter from "../../image_asstes/tandoor_platter.png";
-import { siteUrl } from "../lib/site-config";
+import biriSpe from "../../image_asstes/optimized/biri_spe.png.webp";
+import biryaniBackground from "../../image_asstes/optimized/biriyani_bg.png.webp";
+import indianPlatter from "../../image_asstes/optimized/indian_platter.png.webp";
+import indoChinese from "../../image_asstes/optimized/indo_chinese.png.webp";
+import tandoorPlatter from "../../image_asstes/optimized/tandoor_platter.png.webp";
+import { createSeo } from "../lib/site-config";
 export const Route = createFileRoute("/specialties")({
-  head: () => ({
-    links: [{ rel: "canonical", href: `${siteUrl}/specialties` }],
-    meta: [
-      { title: "NAWAAB Specialities | Biryani, Tandoor, Indian & Indo-Chinese" },
-      {
-        name: "description",
-        content:
-          "Discover NAWAAB's signature Biryani, Tandoor, Indian and Indo-Chinese specialties.",
-      },
-      { property: "og:title", content: "Our Specialities — NAWAAB" },
-      { property: "og:description", content: "Biryani is the heart of NAWAAB." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
+  head: () =>
+    createSeo({
+      path: "/specialties",
+      title: "NAWAAB Specialities | Biryani, Tandoor & Indian Cuisine",
+      description:
+        "Explore NAWAAB's signature Biryani, smoky Tandoor dishes, Indian classics and Indo-Chinese favourites in Kolkata.",
+    }),
   component: Page,
 });
 const blocks = [

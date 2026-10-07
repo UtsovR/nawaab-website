@@ -1,21 +1,14 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ImagePanel, PageHero, SectionTitle } from "../components/site";
-import { siteUrl } from "../lib/site-config";
+import { createSeo } from "../lib/site-config";
 export const Route = createFileRoute("/about")({
-  head: () => ({
-    links: [{ rel: "canonical", href: `${siteUrl}/about` }],
-    meta: [
-      { title: "About NAWAAB – The Taste of Royals" },
-      {
-        name: "description",
-        content: "Discover the story, philosophy and kitchen behind NAWAAB in Kolkata.",
-      },
-      { property: "og:title", content: "About NAWAAB" },
-      { property: "og:description", content: "Biryani at heart, warm hospitality at every table." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
+  head: () =>
+    createSeo({
+      path: "/about",
+      title: "About NAWAAB – The Taste of Royals | Kolkata",
+      description:
+        "Discover NAWAAB – The Taste of Royals, a premium Kolkata dining destination where signature Biryani, Indian classics and warm hospitality come together.",
+    }),
   component: About,
 });
 function About() {

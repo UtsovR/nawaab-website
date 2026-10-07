@@ -1,4 +1,4 @@
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
@@ -26,7 +26,9 @@ function formatReservationDate(date: string) {
 }
 
 function formatReservationTime(time: string) {
-  const [hour, minute] = time.split(":").map(Number);
+  const [hourText = "0", minuteText = "0"] = time.split(":");
+  const hour = Number(hourText);
+  const minute = Number(minuteText);
   const suffix = hour >= 12 ? "PM" : "AM";
   const hour12 = hour % 12 || 12;
   return `${hour12}:${String(minute).padStart(2, "0")} ${suffix}`;
@@ -35,6 +37,8 @@ function formatReservationTime(time: string) {
 export function ReservationForm() {
   const [errors, setErrors] = useState<ReservationErrors>({});
   const [openingWhatsApp, setOpeningWhatsApp] = useState(false);
+  const [minimumDate, setMinimumDate] = useState<string>();
+  useEffect(() => setMinimumDate(todayIsoDate()), []);
   function submit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const form = e.currentTarget;
@@ -162,7 +166,7 @@ Thank you.`;
           aria-invalid={Boolean(errors.date)}
           aria-describedby={errors.date ? errorId("date") : undefined}
           type="date"
-          min={todayIsoDate()}
+          min={minimumDate}
           className={fieldClass}
         />
         {errors.date && (
@@ -218,22 +222,46 @@ export function ContactForm() {
     e.currentTarget.reset();
   }
   return (
-    <form onSubmit={submit} className="grid gap-4">
+    <form onSubmit={submit} noValidate className="grid gap-4">
       {sent && (
         <p role="status" className="border border-primary/30 bg-primary/10 p-4 text-sm text-cream">
           Your message is ready. Our team will be in touch.
         </p>
       )}
-      <Input name="name" placeholder="Name *" className={fieldClass} />
-      <Input name="mobile" type="tel" placeholder="Mobile *" className={fieldClass} />
-      <Input name="email" type="email" placeholder="Email" className={fieldClass} />
+      <Input
+        name="name"
+        aria-label="Name"
+        aria-invalid={Boolean(error)}
+        aria-describedby={error ? "contact-form-error" : undefined}
+        placeholder="Name *"
+        className={fieldClass}
+      />
+      <Input
+        name="mobile"
+        aria-label="Mobile Number"
+        aria-invalid={Boolean(error)}
+        aria-describedby={error ? "contact-form-error" : undefined}
+        type="tel"
+        placeholder="Mobile *"
+        className={fieldClass}
+      />
+      <Input
+        name="email"
+        aria-label="Email"
+        type="email"
+        placeholder="Email"
+        className={fieldClass}
+      />
       <Textarea
         name="message"
+        aria-label="Message"
+        aria-invalid={Boolean(error)}
+        aria-describedby={error ? "contact-form-error" : undefined}
         placeholder="Message *"
         className="min-h-36 border-primary/30 bg-espresso/40 text-cream"
       />
       {error && (
-        <p role="alert" className="text-sm text-destructive">
+        <p id="contact-form-error" role="alert" className="text-sm text-destructive">
           {error}
         </p>
       )}

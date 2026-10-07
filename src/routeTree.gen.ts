@@ -15,6 +15,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as MenuRouteImport } from './routes/menu'
 import { Route as ReservationRouteImport } from './routes/reservation'
+import { Route as SpaShellRouteImport } from './routes/spa-shell'
 import { Route as SpecialtiesRouteImport } from './routes/specialties'
 
 const IndexRoute = IndexRouteImport.update({
@@ -47,6 +48,11 @@ const ReservationRoute = ReservationRouteImport.update({
   path: '/reservation',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SpaShellRoute = SpaShellRouteImport.update({
+  id: '/spa-shell',
+  path: '/spa-shell',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SpecialtiesRoute = SpecialtiesRouteImport.update({
   id: '/specialties',
   path: '/specialties',
@@ -60,6 +66,7 @@ export interface FileRoutesByFullPath {
   '/gallery': typeof GalleryRoute
   '/menu': typeof MenuRoute
   '/reservation': typeof ReservationRoute
+  '/spa-shell': typeof SpaShellRoute
   '/specialties': typeof SpecialtiesRoute
 }
 export interface FileRoutesByTo {
@@ -69,6 +76,7 @@ export interface FileRoutesByTo {
   '/gallery': typeof GalleryRoute
   '/menu': typeof MenuRoute
   '/reservation': typeof ReservationRoute
+  '/spa-shell': typeof SpaShellRoute
   '/specialties': typeof SpecialtiesRoute
 }
 export interface FileRoutesById {
@@ -79,6 +87,7 @@ export interface FileRoutesById {
   '/gallery': typeof GalleryRoute
   '/menu': typeof MenuRoute
   '/reservation': typeof ReservationRoute
+  '/spa-shell': typeof SpaShellRoute
   '/specialties': typeof SpecialtiesRoute
 }
 export interface FileRouteTypes {
@@ -90,6 +99,7 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/menu'
     | '/reservation'
+    | '/spa-shell'
     | '/specialties'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -99,6 +109,7 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/menu'
     | '/reservation'
+    | '/spa-shell'
     | '/specialties'
   id:
     | '__root__'
@@ -108,6 +119,7 @@ export interface FileRouteTypes {
     | '/gallery'
     | '/menu'
     | '/reservation'
+    | '/spa-shell'
     | '/specialties'
   fileRoutesById: FileRoutesById
 }
@@ -118,6 +130,7 @@ export interface RootRouteChildren {
   GalleryRoute: typeof GalleryRoute
   MenuRoute: typeof MenuRoute
   ReservationRoute: typeof ReservationRoute
+  SpaShellRoute: typeof SpaShellRoute
   SpecialtiesRoute: typeof SpecialtiesRoute
 }
 
@@ -165,6 +178,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ReservationRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/spa-shell': {
+      id: '/spa-shell'
+      path: '/spa-shell'
+      fullPath: '/spa-shell'
+      preLoaderRoute: typeof SpaShellRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/specialties': {
       id: '/specialties'
       path: '/specialties'
@@ -182,6 +202,7 @@ const rootRouteChildren: RootRouteChildren = {
   GalleryRoute: GalleryRoute,
   MenuRoute: MenuRoute,
   ReservationRoute: ReservationRoute,
+  SpaShellRoute: SpaShellRoute,
   SpecialtiesRoute: SpecialtiesRoute,
 }
 export const routeTree = rootRouteImport

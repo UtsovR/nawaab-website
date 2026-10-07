@@ -3,53 +3,42 @@ import { ArrowRight, ChevronRight, MapPin, Quote } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { ContactActions, ImagePanel, MapEmbed, SectionTitle } from "../components/site";
 import { ReservationForm } from "../components/forms";
-import butterChicken from "../../image_asstes/butter_chicken.jpeg";
-import biryaniImage from "../../image_asstes/biriyani.JPG";
-import biryaniBanner from "../../image_asstes/biriyani_bg.png";
-import muttonBiryani from "../../image_asstes/biri_square.png";
-import chickenBiryani from "../../image_asstes/chicken_biri.png";
-import chickenTikka from "../../image_asstes/chicken_tikka.jpeg";
-import chilliChicken from "../../image_asstes/chilli_chicken.jpeg";
-import homepageBanner from "../../image_asstes/homepage_bg.jpeg";
-import mixedRice from "../../image_asstes/Mixed_rice.jpeg";
-import pulaoMangsho from "../../image_asstes/pulao_mangsho.jpeg";
-import signatureBiryani from "../../image_asstes/signature_biriyani.jpeg";
-import specialMutton from "../../image_asstes/special_mutton.png";
-import stuffedAfganiChicken from "../../image_asstes/afgani.png";
-import tandoorImage from "../../image_asstes/tandoor.png";
-import interior01 from "../../gallery_asstes/IMG_7273.jpeg";
-import interior02 from "../../gallery_asstes/IMG_7274.jpeg";
-import interior03 from "../../gallery_asstes/IMG_7275.jpeg";
-import interior04 from "../../gallery_asstes/IMG_7276.jpeg";
-import interior05 from "../../gallery_asstes/IMG_7277.jpeg";
-import interior06 from "../../gallery_asstes/IMG_7278.jpeg";
-import interior07 from "../../gallery_asstes/IMG_7279.jpeg";
-import interior08 from "../../gallery_asstes/IMG_7280.jpeg";
-import { siteDescription, siteUrl } from "../lib/site-config";
+import butterChicken from "../../image_asstes/optimized/butter_chicken.jpeg.webp";
+import biryaniImage from "../../image_asstes/optimized/biriyani.JPG.webp";
+import biryaniBanner from "../../image_asstes/optimized/biriyani_bg.png.webp";
+import muttonBiryani from "../../image_asstes/optimized/biri_square.png.webp";
+import chickenBiryani from "../../image_asstes/optimized/chicken_biri.png.webp";
+import chickenTikka from "../../image_asstes/optimized/chicken_tikka.jpeg.webp";
+import chilliChicken from "../../image_asstes/optimized/chilli_chicken.jpeg.webp";
+import homepage640 from "../../image_asstes/optimized/homepage-640.webp";
+import homepage1024 from "../../image_asstes/optimized/homepage-1024.webp";
+import homepage1600 from "../../image_asstes/optimized/homepage-1600.webp";
+import homepage1920 from "../../image_asstes/optimized/homepage-1920.webp";
+import mixedRice from "../../image_asstes/optimized/Mixed_rice.jpeg.webp";
+import pulaoMangsho from "../../image_asstes/optimized/pulao_mangsho.jpeg.webp";
+import signatureBiryani from "../../image_asstes/optimized/signature_biriyani.jpeg.webp";
+import specialMutton from "../../image_asstes/optimized/special_mutton.png.webp";
+import stuffedAfganiChicken from "../../image_asstes/optimized/afgani.png.webp";
+import tandoorImage from "../../image_asstes/optimized/tandoor.png.webp";
+import interior01 from "../../gallery_asstes/optimized/thumb/IMG_7273.jpeg.webp";
+import interior02 from "../../gallery_asstes/optimized/thumb/IMG_7274.jpeg.webp";
+import interior03 from "../../gallery_asstes/optimized/thumb/IMG_7275.jpeg.webp";
+import interior04 from "../../gallery_asstes/optimized/thumb/IMG_7276.jpeg.webp";
+import interior05 from "../../gallery_asstes/optimized/thumb/IMG_7277.jpeg.webp";
+import interior06 from "../../gallery_asstes/optimized/thumb/IMG_7278.jpeg.webp";
+import interior07 from "../../gallery_asstes/optimized/thumb/IMG_7279.jpeg.webp";
+import interior08 from "../../gallery_asstes/optimized/thumb/IMG_7280.jpeg.webp";
+import { createSeo } from "../lib/site-config";
 
 const description =
-  "Discover NAWAAB – The Taste of Royals in Kolkata. Enjoy signature Biryani, smoky Tandoor dishes, authentic Indian favourites and Indo-Chinese classics.";
+  "Experience NAWAAB – The Taste of Royals in Kolkata. Discover signature Biryani, smoky Tandoor favourites, rich Indian classics and Indo-Chinese dishes in a warm premium dining setting.";
 export const Route = createFileRoute("/")({
-  head: () => ({
-    links: [{ rel: "canonical", href: siteUrl }],
-    meta: [
-      {
-        title:
-          "NAWAAB – The Taste of Royals | Biryani, Indian, Tandoor & Chinese Restaurant in Kolkata",
-      },
-      { name: "description", content: description },
-      { name: "description", content: siteDescription },
-      {
-        title:
-          "NAWAAB – The Taste of Royals | Biryani, Tandoor, Indian & Chinese Restaurant in Kolkata",
-      },
-      { property: "og:title", content: "NAWAAB – The Taste of Royals" },
-      { property: "og:description", content: description },
-      { property: "og:description", content: siteDescription },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
-    ],
-  }),
+  head: () =>
+    createSeo({
+      path: "/",
+      title: "NAWAAB – The Taste of Royals | Biryani Restaurant in Kolkata",
+      description,
+    }),
   component: Home,
 });
 const specialties = [
@@ -84,7 +73,9 @@ function Home() {
         <ImagePanel
           id="hero-biryani"
           label="Hero Biryani Image"
-          imageSrc={homepageBanner}
+          imageSrc={homepage1024}
+          imageSrcSet={`${homepage640} 640w, ${homepage1024} 1024w, ${homepage1600} 1600w, ${homepage1920} 1920w`}
+          imageSizes="100vw"
           className="absolute inset-0 min-h-full slow-zoom"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-espresso via-espresso/75 to-transparent" />
@@ -302,7 +293,7 @@ function Home() {
             <a
               href="https://www.google.com/search?q=NAWAAB+Southern+Avenue+Kolkata+reviews"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
             >
               Read More Reviews
             </a>
