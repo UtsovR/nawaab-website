@@ -2,8 +2,10 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { ContactActions, MapEmbed, PageHero, SectionTitle } from "../components/site";
 import { ContactForm } from "../components/forms";
 import { Button } from "../components/ui/button";
+import { siteUrl } from "../lib/site-config";
 export const Route = createFileRoute("/contact")({
   head: () => ({
+    links: [{ rel: "canonical", href: `${siteUrl}/contact` }],
     meta: [
       { title: "Contact NAWAAB | Southern Avenue, Kolkata" },
       {

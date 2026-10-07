@@ -4,8 +4,8 @@ import { resolve } from "node:path";
 const destination = resolve("dist");
 const stagingDirectory = resolve(".netlify-static");
 const outputCandidates = [resolve("dist/client"), resolve(".output/public")];
-const rawSiteUrl = process.env.VITE_SITE_URL ?? process.env.URL ?? process.env.DEPLOY_PRIME_URL;
-const siteUrl = rawSiteUrl?.replace(/\/$/, "") ?? "https://YOUR-PRODUCTION-DOMAIN";
+const rawSiteUrl = process.env.VITE_SITE_URL ?? "https://nawaabthetasteofroyals.com";
+const siteUrl = rawSiteUrl.replace(/\/$/, "");
 const routes = ["/", "/about", "/menu", "/specialties", "/gallery", "/contact", "/reservation"];
 
 let source;
@@ -48,9 +48,3 @@ await writeFile(
   resolve(destination, "robots.txt"),
   `User-agent: *\nAllow: /\n\nSitemap: ${siteUrl}/sitemap.xml\n`,
 );
-
-if (!rawSiteUrl) {
-  console.warn(
-    "[netlify] Set VITE_SITE_URL to your production domain for canonical metadata and sitemap URLs.",
-  );
-}

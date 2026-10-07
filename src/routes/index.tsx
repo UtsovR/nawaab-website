@@ -25,12 +25,13 @@ import interior05 from "../../gallery_asstes/IMG_7277.jpeg";
 import interior06 from "../../gallery_asstes/IMG_7278.jpeg";
 import interior07 from "../../gallery_asstes/IMG_7279.jpeg";
 import interior08 from "../../gallery_asstes/IMG_7280.jpeg";
-import { siteDescription } from "../lib/site-config";
+import { siteDescription, siteUrl } from "../lib/site-config";
 
 const description =
   "Discover NAWAAB – The Taste of Royals in Kolkata. Enjoy signature Biryani, smoky Tandoor dishes, authentic Indian favourites and Indo-Chinese classics.";
 export const Route = createFileRoute("/")({
   head: () => ({
+    links: [{ rel: "canonical", href: siteUrl }],
     meta: [
       {
         title:

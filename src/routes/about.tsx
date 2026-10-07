@@ -1,7 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ImagePanel, PageHero, SectionTitle } from "../components/site";
+import { siteUrl } from "../lib/site-config";
 export const Route = createFileRoute("/about")({
   head: () => ({
+    links: [{ rel: "canonical", href: `${siteUrl}/about` }],
     meta: [
       { title: "About NAWAAB – The Taste of Royals" },
       {

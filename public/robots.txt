@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://YOUR-PRODUCTION-DOMAIN/sitemap.xml
+Sitemap: https://nawaabthetasteofroyals.com/sitemap.xml

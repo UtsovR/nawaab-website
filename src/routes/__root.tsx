@@ -123,7 +123,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "icon", href: "/nawaab-favicon.png", type: "image/png" },
       { rel: "apple-touch-icon", href: "/nawaab-favicon.png" },
       { rel: "manifest", href: "/site.webmanifest" },
-      ...(siteUrl ? [{ rel: "canonical", href: siteUrl }] : []),
+      { rel: "preload", href: socialImage, as: "image", fetchPriority: "high" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
@@ -142,6 +142,13 @@ function RootShell({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <head>
+        <script>{`(() => {
+          if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+          const navigation = performance.getEntriesByType("navigation")[0];
+          if (!location.hash && navigation?.type !== "back_forward") {
+            window.scrollTo(0, 0);
+          }
+        })();`}</script>
         <HeadContent />
         <script type="application/ld+json">{JSON.stringify(structuredData)}</script>
       </head>

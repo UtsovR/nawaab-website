@@ -1,9 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero } from "../components/site";
 import { menuNavigation, menuSections } from "../lib/restaurant-data";
+import { siteUrl } from "../lib/site-config";
+import menuBackground from "../../image_asstes/our_menu_bg.png";
 
 export const Route = createFileRoute("/menu")({
   head: () => ({
+    links: [{ rel: "canonical", href: `${siteUrl}/menu` }],
     meta: [
       { title: "NAWAAB Menu | Biryani, Tandoor, Indian & Chinese" },
       {
@@ -27,6 +30,7 @@ function MenuPage() {
         title="Our Menu"
         copy="Biryani takes pride of place, followed by fire-kissed Tandoor, rich Indian classics and bold Indo-Chinese favourites."
         imageId="menu-hero"
+        imageSrc={menuBackground}
       />
 
       <nav

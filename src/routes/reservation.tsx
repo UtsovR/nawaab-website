@@ -1,8 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageHero, SectionTitle } from "../components/site";
 import { ReservationForm } from "../components/forms";
+import { siteUrl } from "../lib/site-config";
 export const Route = createFileRoute("/reservation")({
   head: () => ({
+    links: [{ rel: "canonical", href: `${siteUrl}/reservation` }],
     meta: [
       { title: "Reserve a Table | NAWAAB Kolkata" },
       {

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { ImagePanel, PageHero } from "../components/site";
 import intBackground from "../../image_asstes/int_bg.png";
+import { siteUrl } from "../lib/site-config";
 
 const galleryAssets = import.meta.glob("../../gallery_asstes/*.{jpeg,JPEG,png}", {
   eager: true,
@@ -12,6 +13,7 @@ const galleryAssets = import.meta.glob("../../gallery_asstes/*.{jpeg,JPEG,png}",
 const image = (name: string) => galleryAssets[`../../gallery_asstes/${name}`];
 export const Route = createFileRoute("/gallery")({
   head: () => ({
+    links: [{ rel: "canonical", href: `${siteUrl}/gallery` }],
     meta: [
       { title: "Inside NAWAAB | Restaurant & Food Gallery" },
       {

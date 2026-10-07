@@ -6,8 +6,10 @@ import biryaniBackground from "../../image_asstes/biriyani_bg.png";
 import indianPlatter from "../../image_asstes/indian_platter.png";
 import indoChinese from "../../image_asstes/indo_chinese.png";
 import tandoorPlatter from "../../image_asstes/tandoor_platter.png";
+import { siteUrl } from "../lib/site-config";
 export const Route = createFileRoute("/specialties")({
   head: () => ({
+    links: [{ rel: "canonical", href: `${siteUrl}/specialties` }],
     meta: [
       { title: "NAWAAB Specialities | Biryani, Tandoor, Indian & Indo-Chinese" },
       {

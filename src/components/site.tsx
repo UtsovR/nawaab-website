@@ -25,6 +25,16 @@ export function Brand({ compact = false }: { compact?: boolean }) {
       >
         <img
           src={nawaabLogo}
+          width={208}
+          height={80}
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
+          width={208}
+          height={80}
+          loading="eager"
+          fetchPriority="high"
+          decoding="async"
           alt="NAWAAB — The Taste of Royals"
           className="h-full w-full object-cover object-center brightness-0 invert"
         />
@@ -148,6 +158,7 @@ export function ImagePanel({
           alt={label}
           className={cn("absolute inset-0 size-full object-cover", imageClassName)}
           loading={id.includes("hero") ? "eager" : "lazy"}
+          fetchPriority={id.includes("hero") ? "high" : "auto"}
           decoding="async"
         />
       )}

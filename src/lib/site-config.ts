@@ -1,7 +1,9 @@
 export const siteName = "NAWAAB – The Taste of Royals";
 export const siteDescription =
   "Experience NAWAAB – The Taste of Royals in Kolkata. Discover signature Biryani, smoky Tandoor favourites, rich Indian classics and Indo-Chinese dishes in a warm premium dining setting.";
-export const siteUrl = import.meta.env.VITE_SITE_URL?.replace(/\/$/, "");
+export const siteUrl = (
+  import.meta.env.VITE_SITE_URL ?? "https://nawaabthetasteofroyals.com"
+).replace(/\/$/, "");
 
 export const socialLinks = {
   instagram: "https://www.instagram.com/_nawaab.restaurant_?stkn=ZGQyNXdvbW93ZWM4",

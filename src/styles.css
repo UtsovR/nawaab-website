@@ -177,3 +177,16 @@
   @keyframes slowZoom { to { transform: scale(1.05); } }
   @keyframes reveal { from { opacity: 0; transform: translateY(20px); } }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .slow-zoom { animation: none; }
+}
