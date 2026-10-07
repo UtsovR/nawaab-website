@@ -380,7 +380,7 @@ export function ContactActions() {
 
 export function MapEmbed() {
   return (
-    <div className="overflow-hidden rounded-lg border border-primary/25 bg-card">
+    <div className="overflow-hidden rounded-lg border border-primary/25 bg-card lg:self-center">
       <iframe
         title="NAWAAB location on Google Maps"
         className="h-64 w-full grayscale-[20%] md:h-80"
