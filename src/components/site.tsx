@@ -31,7 +31,7 @@ export function Brand({ compact = false }: { compact?: boolean }) {
           fetchPriority="high"
           decoding="async"
           alt="NAWAAB — The Taste of Royals"
-          className="h-full w-full object-cover object-center brightness-0 invert"
+          className="block h-full w-auto max-w-full object-contain object-center brightness-0 invert"
         />
       </Link>
     );
@@ -50,7 +50,7 @@ export function Brand({ compact = false }: { compact?: boolean }) {
         loading="lazy"
         decoding="async"
         alt="NAWAAB — The Taste of Royals"
-        className="h-full w-full object-cover object-center brightness-0 invert"
+        className="block h-full w-auto max-w-full object-contain object-center brightness-0 invert"
       />
     </Link>
   );
