@@ -5,5 +5,5 @@
   "display": "browser",
   "background_color": "#1b0d08",
   "theme_color": "#1b0d08",
-  "icons": [{ "src": "/favicon.ico", "sizes": "48x48", "type": "image/x-icon" }]
+  "icons": [{ "src": "/nawaab-favicon.png", "type": "image/png" }]
 }

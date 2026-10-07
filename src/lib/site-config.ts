@@ -5,7 +5,7 @@ export const siteUrl = import.meta.env.VITE_SITE_URL?.replace(/\/$/, "");
 
 export const socialLinks = {
   instagram: "https://www.instagram.com/_nawaab.restaurant_?stkn=ZGQyNXdvbW93ZWM4",
-  facebook: "https://www.facebook.com/share/1Heean9nWN/?mibextid=wwXIfr",
+  facebook: "https://www.facebook.com/share/1Bs6kXhzpn/?mibextid=wwXIfr",
   maps: "https://maps.app.goo.gl/ziqPZu6dyvv8KpSP8",
 } as const;
 
