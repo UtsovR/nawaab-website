@@ -1,10 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ImagePanel, PageHero, SectionTitle } from "../components/site";
+import { PageHero, SectionTitle } from "../components/site";
 import { createSeo } from "../lib/site-config";
 import aboutDishes768 from "../../image_asstes/optimized/about-dishes-768.webp";
 import aboutDishes1280 from "../../image_asstes/optimized/about-dishes-1280.webp";
 import aboutDishes1600 from "../../image_asstes/optimized/about-dishes-1600.webp";
 import aboutDishes1920 from "../../image_asstes/optimized/about-dishes-1920.webp";
+import tandoorKitchenImage from "../../image_asstes/optimized/tandoor_kitchen.png.webp";
 export const Route = createFileRoute("/about")({
   head: () =>
     createSeo({
@@ -85,22 +86,15 @@ function About() {
       <section className="section-pad bg-cream text-espresso">
         <div className="mx-auto max-w-7xl px-5 md:px-8">
           <SectionTitle light eyebrow="Our Kitchen" title="Made with care, finished with fire" />
-          <div className="grid auto-rows-[200px] gap-3 sm:auto-rows-[230px] sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              "biryani-preparation",
-              "chef-image",
-              "tandoor-kitchen",
-              "kitchen-image",
-              "food-plating",
-            ].map((x, i) => (
-              <ImagePanel
-                id={x}
-                label={x.replaceAll("-", " ")}
-                key={x}
-                className={i === 0 ? "sm:col-span-2 sm:row-span-2" : ""}
-              />
-            ))}
-          </div>
+          <img
+            src={tandoorKitchenImage}
+            alt="Inside the tandoor kitchen at NAWAAB"
+            className="block h-auto w-full"
+            loading="lazy"
+            decoding="async"
+            width={1600}
+            height={900}
+          />
         </div>
       </section>
     </main>

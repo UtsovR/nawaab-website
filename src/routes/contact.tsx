@@ -3,6 +3,7 @@ import { ContactActions, MapEmbed, PageHero, SectionTitle } from "../components/
 import { ContactForm } from "../components/forms";
 import { Button } from "../components/ui/button";
 import { createSeo } from "../lib/site-config";
+import visitNawaabImage from "../../image_asstes/optimized/v_nawaab.png.webp";
 export const Route = createFileRoute("/contact")({
   head: () =>
     createSeo({
@@ -21,6 +22,8 @@ function Contact() {
         title="Visit NAWAAB"
         copy="A warm table, fragrant Biryani and royal flavours await on Southern Avenue."
         imageId="restaurant-exterior"
+        imageSrc={visitNawaabImage}
+        imageClassName="object-[60%_center] brightness-75 saturate-75 opacity-70"
       />
       <section className="section-pad bg-cream text-espresso">
         <div className="mx-auto grid max-w-7xl gap-12 px-5 lg:grid-cols-2 md:px-8">
