@@ -35,8 +35,14 @@ await Promise.all([
 ]);
 
 for (const name of await imageNames(siteSource)) {
+  if (name === "about_dishes.jpeg") continue;
   const width = name === "homepage_bg.jpeg" ? 1920 : 1600;
   await writeWebp(join(siteSource, name), join(siteOutput, `${name}.webp`), width, 84);
+}
+
+const aboutDishesSource = join(siteSource, "about_dishes.jpeg");
+for (const width of [768, 1280, 1600, 1920]) {
+  await writeWebp(aboutDishesSource, join(siteOutput, `about-dishes-${width}.webp`), width, 86);
 }
 
 const homepageSource = join(siteSource, "homepage_bg.jpeg");

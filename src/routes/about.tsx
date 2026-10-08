@@ -1,6 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ImagePanel, PageHero, SectionTitle } from "../components/site";
 import { createSeo } from "../lib/site-config";
+import aboutDishes768 from "../../image_asstes/optimized/about-dishes-768.webp";
+import aboutDishes1280 from "../../image_asstes/optimized/about-dishes-1280.webp";
+import aboutDishes1600 from "../../image_asstes/optimized/about-dishes-1600.webp";
+import aboutDishes1920 from "../../image_asstes/optimized/about-dishes-1920.webp";
 export const Route = createFileRoute("/about")({
   head: () =>
     createSeo({
@@ -20,24 +24,43 @@ function About() {
         copy="NAWAAB was created around one simple idea: memorable food should bring people together. At the heart of our kitchen is Biryani, supported by smoky Tandoor dishes, rich Indian favourites and Indo-Chinese classics."
         imageId="about-biryani"
       />
-      <section className="section-pad bg-cream text-espresso">
-        <div className="mx-auto grid max-w-7xl gap-8 px-5 md:grid-cols-2 md:px-8">
-          <ImagePanel
-            id="restaurant-interior"
-            label="Restaurant Interior"
-            className="min-h-80 md:min-h-[500px]"
+      <section className="relative flex min-h-[560px] items-center overflow-hidden sm:min-h-[580px] md:min-h-[600px] lg:min-h-[680px] xl:min-h-[720px]">
+        <picture className="absolute inset-0 size-full">
+          <source
+            type="image/webp"
+            srcSet={`${aboutDishes768} 768w, ${aboutDishes1280} 1280w, ${aboutDishes1600} 1600w, ${aboutDishes1920} 1920w`}
+            sizes="100vw"
           />
-          <div className="flex flex-col justify-center">
-            <SectionTitle
-              light
-              eyebrow="Our Story"
-              title="Gathered around flavour"
-              copy="Every plate is made to feel generous, considered and deeply satisfying — food for family meals, old friends and new celebrations."
-            />
-            <p className="text-sm leading-7 text-espresso/65">
-              Our Biryani leads the table: aromatic, layered and made with the patience a memorable
-              meal deserves.
-            </p>
+          <img
+            src={aboutDishes1600}
+            alt="NAWAAB signature dishes and biryani"
+            className="size-full object-cover object-[68%_center] sm:object-[64%_center] md:object-[60%_center] lg:object-center"
+            loading="lazy"
+            decoding="async"
+            width={1600}
+            height={560}
+          />
+        </picture>
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(18,7,4,0.86)_0%,rgba(18,7,4,0.68)_55%,rgba(18,7,4,0.3)_100%)] md:bg-[linear-gradient(90deg,rgba(18,7,4,0.8)_0%,rgba(18,7,4,0.6)_38%,rgba(18,7,4,0.2)_68%,rgba(18,7,4,0.05)_100%)]" />
+        <div className="relative z-10 w-full px-5 py-8 md:px-8 lg:px-[7vw]">
+          <div className="max-w-[580px]">
+            <div className="mb-5 flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.28em] text-primary sm:text-xs">
+              <span className="h-px w-10 bg-primary" />
+              Our Story
+            </div>
+            <h2 className="text-[clamp(2.35rem,9vw,3.6rem)] font-semibold leading-[1.03] text-cream lg:text-[clamp(3rem,5vw,5.5rem)]">
+              Gathered around flavour
+            </h2>
+            <div className="mt-7 max-w-[560px] space-y-5 text-[15px] leading-[1.7] text-cream/85 sm:text-base">
+              <p>
+                Every plate is made to feel generous, considered and deeply satisfying — food for
+                family meals, old friends and new celebrations.
+              </p>
+              <p>
+                Our Biryani leads the table: aromatic, layered and made with the patience a
+                memorable meal deserves.
+              </p>
+            </div>
           </div>
         </div>
       </section>
